@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>غسيل السيارات الممتاز</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4A44B5;
+            --dark: #1A1A2E;
+            --light: rgba(255, 255, 255, 0.8);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        body {
+            background: linear-gradient(135deg, #1A1A2E, #16213E, #0F3460);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+            direction: rtl;
+            transition: all 0.5s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #6C63FF, #FF6584);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        h1:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .server-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .server-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .server-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .server-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .server-card p {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: var(--light);
+        }
+
+        .server-link {
+            color: #6C63FF;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .server-link:hover {
+            text-decoration: underline;
+        }
+
+        .logout-btn {
+            background: rgba(255, 101, 132, 0.8);
+            width: auto;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 10px;
+        }
+
+        .user-info i {
+            color: var(--primary);
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+        }
+
+        /* Car Wash Page Styles */
+        .car-wash-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .car-wash-title {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #6C63FF;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .click-counter {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .user-role-badge {
+            background: rgba(108, 99, 255, 0.3);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .server-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .server-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+            
+            .car-wash-title {
+                font-size: 2.2rem;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Click Counter (Hidden by default) -->
+    <div class="click-counter" id="click-counter">النقرات: 0</div>
+
+    <!-- Car Wash Homepage -->
+    <div id="car-wash-page" class="container">
+        <div class="glass-card car-wash-container">
+            <h1 class="car-wash-title" id="main-title">غسيل السيارات الممتاز</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; color: rgba(255, 255, 255, 0.8);">
+                نقدم لكم أفضل خدمات غسيل وتلميع السيارات بأحدث التقنيات والمواد
+            </p>
+            
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="service-title">غسيل خارجي كامل</h3>
+                    <p class="service-description">
+                        غسيل وتنظيف خارجي شامل للسيارة باستخدام أفضل مواد التنظيف والتلميع
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spray-can"></i>
+                    </div>
+                    <h3 class="service-title">تنظيف داخلي عميق</h3>
+                    <p class="service-description">
+                        تنظيف وتعطير داخلي كامل مع العناية بكل التفاصيل والديكورات الداخلية
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="service-title">تلميع واحترافية</h3>
+                    <p class="service-description">
+                        تلميع احترافي يعيد لسيارتك بريقها الأصلي ويحميها من العوامل الجوية
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h2 style="margin-bottom: 15px;">اتصل بنا</h2>
+                <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="margin-left: 8px;"></i> 0551234567</p>
+                <p style="margin-bottom: 10px;"><i class="fas fa-map-marker-alt" style="margin-left: 8px;"></i> الرياض - حي الملك فهد</p>
+                <p><i class="fas fa-clock" style="margin-left: 8px;"></i> من 8 صباحاً حتى 10 مساءً</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Section -->
+    <div id="login-section" class="glass-card login-form hidden">
+        <div class="logo">
+            <i class="fas fa-server"></i>
+            <span>Server Fridge - ثلاجة السيرفرات</span>
+        </div>
+        <h1>مرحباً بعودتك</h1>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+            </div>
+            <button type="submit" class="btn">تسجيل الدخول</button>
+        </form>
+    </div>
+
+    <!-- Main Section (After Login) -->
+    <div id="main-section" class="glass-card hidden">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-server"></i>
+                <span>Server Fridge - ثلاجة السيرفرات</span>
+            </div>
+            <div class="user-info">
+                <i class="fas fa-user"></i>
+                <span id="current-user">مستخدم</span>
+                <span class="user-role-badge" id="user-role-badge">دور المستخدم</span>
+            </div>
+        </div>
+        
+        <!-- Add Server Section (Only for User 111) -->
+        <div id="add-server-section" class="hidden">
+            <h2>إضافة سيرفر جديد</h2>
+            <div class="server-form">
+                <div class="form-group">
+                    <label for="channel-name">اسم القناة</label>
+                    <input type="text" id="channel-name" placeholder="أدخل اسم القناة">
+                </div>
+                <div class="form-group">
+                    <label for="server-link">رابط السيرفر</label>
+                    <input type="text" id="server-link" placeholder="أدخل رابط السيرفر">
+                </div>
+                <div class="form-group">
+                    <label for="server-name">اسم السيرفر (اختياري)</label>
+                    <input type="text" id="server-name" placeholder="أدخل اسم السيرفر">
+                </div>
+            </div>
+            <button class="btn" id="add-server">إضافة السيرفر</button>
+        </div>
+        
+        <!-- View Servers Section (Only for User 222) -->
+        <div id="view-servers-section" class="hidden">
+            <div class="header">
+                <h2>السيرفرات المخزنة</h2>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>فرز حسب:</label>
+                        <select id="sort-by">
+                            <option value="newest">الأحدث</option>
+                            <option value="oldest">الأقدم</option>
+                            <option value="name">الاسم</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>عرض:</label>
+                        <button class="filter-btn active" data-filter="all">الكل</button>
+                        <button class="filter-btn" data-filter="recent">المضافة حديثاً</button>
+                    </div>
+                </div>
+            </div>
+            <div id="server-list" class="server-list">
+                <!-- Server cards will be added here dynamically -->
+            </div>
+        </div>
+        
+        <button class="btn logout-btn" id="logout-btn">تسجيل الخروج</button>
+    </div>
+
+    <script>
+        // DOM Elements
+        const carWashPage = document.getElementById('car-wash-page');
+        const loginSection = document.getElementById('login-section');
+        const mainSection = document.getElementById('main-section');
+        const loginForm = document.getElementById('login-form');
+        const addServerSection = document.getElementById('add-server-section');
+        const viewServersSection = document.getElementById('view-servers-section');
+        const serverList = document.getElementById('server-list');
+        const addServerBtn = document.getElementById('add-server');
+        const logoutBtn = document.getElementById('logout-btn');
+        const currentUserSpan = document.getElementById('current-user');
+        const userRoleBadge = document.getElementById('user-role-badge');
+        const sortBySelect = document.getElementById('sort-by');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const mainTitle = document.getElementById('main-title');
+        const clickCounter = document.getElementById('click-counter');
+
+        // User credentials and roles
+        const users = {
+            '111': { password: '111', role: 'adder' },
+            '222': { password: '222', role: 'viewer' }
+        };
+
+        // Initialize servers from localStorage or create empty array
+        let servers = JSON.parse(localStorage.getItem('serverFridge')) || [];
+        let currentUser = '';
+        let currentUserRole = '';
+        let clickCount = 0;
+
+        // Handle title clicks to reveal login
+        mainTitle.addEventListener('click', function() {
+            clickCount++;
+            clickCounter.textContent = `النقرات: ${clickCount}`;
+            clickCounter.style.display = 'block';
+            
+            // Change title color on click
+            this.style.color = clickCount === 1 ? '#FF6584' : 
+                              clickCount === 2 ? '#6C63FF' : 
+                              '#4A44B5';
+            
+            if (clickCount >= 3) {
+                // Show login after 3 clicks
+                setTimeout(function() {
+                    carWashPage.classList.add('hidden');
+                    loginSection.classList.remove('hidden');
+                    clickCounter.style.display = 'none';
+                }, 500);
+            }
+            
+            // Reset counter after 5 seconds
+            clearTimeout(window.clickTimeout);
+            window.clickTimeout = setTimeout(function() {
+                clickCount = 0;
+                clickCounter.style.display = 'none';
+                mainTitle.style.color = '';
+            }, 5000);
+        });
+
+        // Login functionality
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (users[username] && users[username].password === password) {
+                currentUser = username;
+                currentUserRole = users[username].role;
+                currentUserSpan.textContent = `مستخدم ${username}`;
+                
+                // Set user role badge
+                if (currentUserRole === 'adder') {
+                    userRoleBadge.textContent = 'مضيف سيرفرات';
+                } else {
+                    userRoleBadge.textContent = 'عارض السيرفرات';
+                }
+                
+                loginSection.classList.add('hidden');
+                mainSection.classList.remove('hidden');
+                
+                // Show appropriate section based on user role
+                if (currentUserRole === 'adder') {
+                    addServerSection.classList.remove('hidden');
+                    viewServersSection.classList.add('hidden');
+                } else {
+                    addServerSection.classList.add('hidden');
+                    viewServersSection.classList.remove('hidden');
+                    renderServers();
+                }
+            } else {
+                alert('بيانات الدخول غير صحيحة');
+            }
+            
+            // Clear form
+            loginForm.reset();
+        });
+
+        // Add server functionality
+        addServerBtn.addEventListener('click', function() {
+            const channelName = document.getElementById('channel-name').value;
+            const serverLink = document.getElementById('server-link').value;
+            const serverName = document.getElementById('server-name').value;
+            
+            if (!channelName || !serverLink) {
+                alert('يرجى ملء اسم القناة ورابط السيرفر على الأقل');
+                return;
+            }
+            
+            // Create server object
+            const server = {
+                id: Date.now(), // Simple ID based on timestamp
+                channelName,
+                serverLink,
+                serverName: serverName || 'سيرفر بدون اسم',
+                addedBy: currentUser,
+                dateAdded: new Date().toLocaleString('ar-EG')
+            };
+            
+            // Add to servers array
+            servers.push(server);
+            
+            // Save to localStorage
+            localStorage.setItem('serverFridge', JSON.stringify(servers));
+            
+            // Clear form and show success message
+            document.getElementById('channel-name').value = '';
+            document.getElementById('server-link').value = '';
+            document.getElementById('server-name').value = '';
+            
+            alert('تم إضافة السيرفر بنجاح!');
+        });
+
+        // Render servers
+        function renderServers() {
+            serverList.innerHTML = '';
+            
+            if (servers.length === 0) {
+                serverList.innerHTML = '<p>لا توجد سيرفرات مضافة بعد.</p>';
+                return;
+            }
+            
+            // Sort servers
+            const sortBy = sortBySelect.value;
+            let sortedServers = [...servers];
+            
+            if (sortBy === 'newest') {
+                sortedServers.sort((a, b) => b.id - a.id);
+            } else if (sortBy === 'oldest') {
+                sortedServers.sort((a, b) => a.id - b.id);
+            } else if (sortBy === 'name') {
+                sortedServers.sort((a, b) => a.channelName.localeCompare(b.channelName, 'ar'));
+            }
+            
+            // Filter servers if needed
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            if (activeFilter === 'recent') {
+                // Show only servers added in the last 7 days
+                const oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                sortedServers = sortedServers.filter(server => {
+                    const serverDate = new Date(server.id);
+                    return serverDate > oneWeekAgo;
+                });
+            }
+            
+            sortedServers.forEach(server => {
+                const serverCard = document.createElement('div');
+                serverCard.className = 'server-card';
+                serverCard.innerHTML = `
+                    <h3>${server.channelName}</h3>
+                    <p><strong>اسم السيرفر:</strong> ${server.serverName}</p>
+                    <p><strong>الرابط:</strong> <a href="${server.serverLink}" target="_blank" class="server-link">${server.serverLink}</a></p>
+                    <p><strong>أضيف بواسطة:</strong> مستخدم ${server.addedBy}</p>
+                    <p><strong>تم الإضافة:</strong> ${server.dateAdded}</p>
+                `;
+                serverList.appendChild(serverCard);
+            });
+        }
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function() {
+            mainSection.classList.add('hidden');
+            carWashPage.classList.remove('hidden');
+            currentUser = '';
+            currentUserRole = '';
+            clickCount = 0;
+            clickCounter.style.display = 'none';
+            mainTitle.style.color = '';
+        });
+
+        // Sort and filter functionality
+        sortBySelect.addEventListener('change', renderServers);
+        
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderServers();
+            });
+        });
+
+        // Initialize with empty data
+        if (servers.length === 0) {
+            localStorage.setItem('serverFridge', JSON.stringify(servers));
+        }
+    </script>
+</body>
+</html>
